@@ -7,8 +7,10 @@ requires-python = ">=3.12.3"
 
 dependencies = [
     "jupyter>=1.1.1",
+    "numexpr>=2.10.2",
     "openai>=1.78.1",
     "pyagrum>=2.1.0",
+    "restrictedpython>=8.0",
 ]
 
 [dependency-groups]

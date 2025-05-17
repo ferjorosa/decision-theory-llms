@@ -1,4 +1,4 @@
-# decision-theory-llms
+ # decision-theory-llms
 
 ## Setup
 This project uses UV as the package manager. To set up the project:
@@ -15,7 +15,18 @@ curl -sSf https://astral.sh/uv/install.sh | sh
 uv sync
 ```
 
-### Some relevant bibliography:
+## Project Structure
+
+```
+.
+├── notebooks/         # Jupyter notebooks with examples and tutorials
+│   └── learn/         # Learning materials and demonstrations
+├── src/               # Source code for tools and utilities
+├── tests/             # Test cases
+└── examples/          # Example implementations
+```
+
+## Some relevant bibliography:
 
 1. **Howard, R.A., Matheson, J.E., & Strategic Decisions Group**. (1983). *Readings on the Principles and Applications of Decision Analysis: General collection*. Strategic Decisions Group. ([PDF](https://gwern.net/doc/statistics/decision/1983-howard-readingsondecisionanalysis-v1.pdf))
 

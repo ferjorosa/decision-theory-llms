@@ -7,7 +7,8 @@ def run_tool_call_loop(
     tools: List[Dict[str, Any]],
     messages: List[Dict[str, Any]],
     tool_mapping: Dict[str, Callable[..., Any]],
-    max_iterations: int = 5
+    max_iterations: int = 5,
+    verbose: bool = True
 ) -> Tuple[Optional[str], List[Dict[str, Any]]]:
     """
     Runs a loop to interact with an LLM that may invoke tools during its response generation.
@@ -23,6 +24,7 @@ def run_tool_call_loop(
         messages (List[Dict[str, Any]]): Message history including system/user/assistant/tool messages.
         tool_mapping (Dict[str, Callable[..., Any]]): Mapping of tool names to corresponding Python callables.
         max_iterations (int, optional): Maximum number of LLM-tool call interaction cycles.
+        verbose (bool, optional): Whether to print progress information. Defaults to True.
 
     Returns:
         Tuple[Optional[str], List[Dict[str, Any]]]: A tuple of (final_response_content, full_message_list), 
@@ -32,7 +34,8 @@ def run_tool_call_loop(
         ValueError: If the model requests a tool that isn't defined in `tool_mapping`.
     """
     for iteration in range(max_iterations):
-        print(f"\n--- Iteration {iteration + 1} ---")
+        if verbose:
+            print(f"\n--- Iteration {iteration + 1} ---")
 
         response = openai_client.chat.completions.create(
             model=model,
@@ -44,7 +47,8 @@ def run_tool_call_loop(
         messages.append(msg.model_dump())
 
         if not getattr(msg, "tool_calls", None):
-            print("🔚 Final model output:\n", msg.content[:500])
+            if verbose:
+                print("🔚 Final model output:\n", msg.content[:500])
             return msg.content, messages
 
         for tool_call in msg.tool_calls:
@@ -55,7 +59,8 @@ def run_tool_call_loop(
             if not tool_func:
                 raise ValueError(f"No tool function mapped for '{tool_name}'")
 
-            print(f"🛠️  Model requested tool: {tool_name} with args: {tool_args}")
+            if verbose:
+                print(f"🛠️  Model requested tool: {tool_name} with args: {tool_args}")
             tool_result = tool_func(**tool_args)
 
             messages.append({
@@ -65,5 +70,6 @@ def run_tool_call_loop(
                 "content": json.dumps(tool_result),
             })
 
-    print("⚠️ Max iterations reached without final response.")
+    if verbose:
+        print("⚠️ Max iterations reached without final response.")
     return None, messages

@@ -482,8 +482,10 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "jupyter" },
+    { name = "numexpr" },
     { name = "openai" },
     { name = "pyagrum" },
+    { name = "restrictedpython" },
 ]
 
 [package.dev-dependencies]
@@ -494,8 +496,10 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "jupyter", specifier = ">=1.1.1" },
+    { name = "numexpr", specifier = ">=2.10.2" },
     { name = "openai", specifier = ">=1.78.1" },
     { name = "pyagrum", specifier = ">=2.1.0" },
+    { name = "restrictedpython", specifier = ">=8.0" },
 ]
 
 [package.metadata.requires-dev]
@@ -1151,6 +1155,31 @@ wheels = [
 ]
 
 [[package]]
+name = "numexpr"
+version = "2.10.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/21/67/c7415cf04ebe418193cfd6595ae03e3a64d76dac7b9c010098b39cc7992e/numexpr-2.10.2.tar.gz", hash = "sha256:b0aff6b48ebc99d2f54f27b5f73a58cb92fde650aeff1b397c71c8788b4fff1a", size = 106787 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/2b/96/d5053dea06d8298ae8052b4b049cbf8ef74998e28d57166cc27b8ae909e2/numexpr-2.10.2-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:b5323a46e75832334f1af86da1ef6ff0add00fbacdd266250be872b438bdf2be", size = 145029 },
+    { url = "https://files.pythonhosted.org/packages/3e/3c/fcd5a812ed5dda757b2d9ef2764a3e1cca6f6d1f02dbf113dc23a2c7702a/numexpr-2.10.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:a42963bd4c62d8afa4f51e7974debfa39a048383f653544ab54f50a2f7ec6c42", size = 134851 },
+    { url = "https://files.pythonhosted.org/packages/0a/52/0ed3b306d8c9944129bce97fec73a2caff13adbd7e1df148d546d7eb2d4d/numexpr-2.10.2-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:5191ba8f2975cb9703afc04ae845a929e193498c0e8bcd408ecb147b35978470", size = 411837 },
+    { url = "https://files.pythonhosted.org/packages/7d/9c/6b671dd3fb67d7e7da93cb76b7c5277743f310a216b7856bb18776bb3371/numexpr-2.10.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:97298b14f0105a794bea06fd9fbc5c423bd3ff4d88cbc618860b83eb7a436ad6", size = 400577 },
+    { url = "https://files.pythonhosted.org/packages/ea/4d/a167d1a215fe10ce58c45109f2869fd13aa0eef66f7e8c69af68be45d436/numexpr-2.10.2-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:f9d7805ccb6be2d3b0f7f6fad3707a09ac537811e8e9964f4074d28cb35543db", size = 1381735 },
+    { url = "https://files.pythonhosted.org/packages/c1/d4/17e4434f989e4917d31cbd88a043e1c9c16958149cf43fa622987111392b/numexpr-2.10.2-cp312-cp312-win32.whl", hash = "sha256:cb845b2d4f9f8ef0eb1c9884f2b64780a85d3b5ae4eeb26ae2b0019f489cd35e", size = 152102 },
+    { url = "https://files.pythonhosted.org/packages/b8/25/9ae599994076ef2a42d35ff6b0430da002647f212567851336a6c7b132d6/numexpr-2.10.2-cp312-cp312-win_amd64.whl", hash = "sha256:57b59cbb5dcce4edf09cd6ce0b57ff60312479930099ca8d944c2fac896a1ead", size = 145061 },
+    { url = "https://files.pythonhosted.org/packages/8c/cb/2ea1848c46e4d75073c038dd75628d1aa442975303264ed230bf90f74f44/numexpr-2.10.2-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:a37d6a51ec328c561b2ca8a2bef07025642eca995b8553a5267d0018c732976d", size = 145035 },
+    { url = "https://files.pythonhosted.org/packages/ec/cf/bb2bcd81d6f3243590e19ac3e7795a1a370f3ebcd8ecec1f46dcd5333f37/numexpr-2.10.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:81d1dde7dd6166d8ff5727bb46ab42a6b0048db0e97ceb84a121334a404a800f", size = 134858 },
+    { url = "https://files.pythonhosted.org/packages/48/9b/c9128ffb453205c2a4c84a3abed35447c7591c2c2812e77e34fd238cb2bb/numexpr-2.10.2-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:5b3f814437d5a10797f8d89d2037cca2c9d9fa578520fc911f894edafed6ea3e", size = 415517 },
+    { url = "https://files.pythonhosted.org/packages/7e/b0/64c04c9f8b4a563218d00daa1ec4563364961b79025162c5276ab2c7c407/numexpr-2.10.2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:9309f2e43fe6e4560699ef5c27d7a848b3ff38549b6b57194207cf0e88900527", size = 403846 },
+    { url = "https://files.pythonhosted.org/packages/80/35/60e9041fd709fe98dd3109d73a03cdffaeb6ee2089179155f5c3754e9934/numexpr-2.10.2-cp313-cp313-musllinux_1_2_x86_64.whl", hash = "sha256:ebb73b93f5c4d6994f357fa5a47a9f7a5485577e633b3c46a603cb01445bbb19", size = 1381659 },
+    { url = "https://files.pythonhosted.org/packages/bd/5a/955bf5b5cf8f3de7b044a999e36327e14191fa073ed0e329456ed0f8161d/numexpr-2.10.2-cp313-cp313-win32.whl", hash = "sha256:ec04c9a3c050c175348801e27c18c68d28673b7bfb865ef88ce333be523bbc01", size = 152105 },
+    { url = "https://files.pythonhosted.org/packages/be/7a/8ce360a1848bb5bcc30a414493371678f43790ece397f8652d5f65757e57/numexpr-2.10.2-cp313-cp313-win_amd64.whl", hash = "sha256:d7a3fc83c959288544db3adc70612475d8ad53a66c69198105c74036182d10dd", size = 145060 },
+]
+
+[[package]]
 name = "numpy"
 version = "2.2.5"
 source = { registry = "https://pypi.org/simple" }
@@ -1627,6 +1656,15 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/f9/9b/335f9764261e915ed497fcdeb11df5dfd6f7bf257d4a6a2a686d80da4d54/requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6", size = 64928 },
+]
+
+[[package]]
+name = "restrictedpython"
+version = "8.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/76/f3/3cfd684abf456f536a842e4fabe1ca360a8e94d1fc329f261c34c1d98825/restrictedpython-8.0.tar.gz", hash = "sha256:3af2312bc67e5fced887fb85b006c89861da72488128b155beea81eb6a0a9b24", size = 448747 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/df/31/b33804f873742ab20c8ed82a75652bf60a6205116dfec8bb092a6ebef084/RestrictedPython-8.0-py3-none-any.whl", hash = "sha256:ed3d894efd7d6cac0a5f13f75583b8458378d400d7dd4c083b59233eba85fe69", size = 27238 },
 ]
 
 [[package]]
