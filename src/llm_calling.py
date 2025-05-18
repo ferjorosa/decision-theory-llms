@@ -1,10 +1,10 @@
-from typing import Any, List, Dict, Optional
+from typing import Any, List, Dict, Optional, Tuple
 
 def run_llm_call(
     openai_client: Any,
     model: str,
     messages: List[Dict[str, str]],
-) -> Optional[str]:
+) -> Tuple[Optional[str], List[Dict[str, str]]]:
     """
     Sends a basic chat message to a language model (no tool calling).
 
@@ -14,7 +14,9 @@ def run_llm_call(
         messages (List[Dict[str, str]]): List of chat messages in OpenAI format.
 
     Returns:
-        Optional[str]: The assistant's response content, or None if no response is returned.
+        Tuple[Optional[str], List[Dict[str, str]]]: A tuple of (final_response_content, full_message_list), 
+        where final_response_content is the assistant's response content, or None if no response is returned,
+        and full_message_list is the list of messages including the assistant's response.
     """
     response = openai_client.chat.completions.create(
         model=model,
@@ -22,4 +24,7 @@ def run_llm_call(
     )
 
     message = response.choices[0].message
-    return message.content
+
+    messages.append(message.model_dump())
+
+    return message.content, messages

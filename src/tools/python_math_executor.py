@@ -22,7 +22,7 @@ from RestrictedPython.Guards import (
 )
 
 # Tool schema compatible with OpenAI Function Calling
-PYTHON_EXECUTION_TOOL = {
+PYTHON_MATH_EXECUTION_TOOL = {
     "type": "function",
     "function": {
         "name": "execute_python",

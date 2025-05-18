@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import List, Union
 
-def save_tool_calling_output(
+def save_output(
     response: Union[str, None],
     messages: List[dict],
     base_path: Path,
@@ -11,7 +11,7 @@ def save_tool_calling_output(
     print_output: bool = True
 ) -> None:
     """
-    Save the final response and message history from a tool calling loop.
+    Save the final response and message history from an llm / tool calling loop.
 
     Args:
         response (str | None): The final text response to save.
@@ -21,7 +21,7 @@ def save_tool_calling_output(
         model (str): The model name used (used in folder naming).
     """
     # Create timestamped directory
-    results_dir = base_path / "results" / timestamp / model
+    results_dir = base_path / timestamp / model
     results_dir.mkdir(parents=True, exist_ok=True)
 
     # Define file paths
@@ -31,10 +31,15 @@ def save_tool_calling_output(
     # Save final response (if it exists)
     if response:
         txt_path.write_text(response, encoding="utf-8")
+    else:
+        print("❌ No response to save")
 
     # Save full message history as JSON
-    with json_path.open("w", encoding="utf-8") as f:
-        json.dump(messages, f, ensure_ascii=False, indent=2)
+    if messages:
+        with json_path.open("w", encoding="utf-8") as f:
+            json.dump(messages, f, ensure_ascii=False, indent=2)
+    else:
+        print("❌ No message history to save")
 
     # Optional: print where the files were saved
     if print_output:
