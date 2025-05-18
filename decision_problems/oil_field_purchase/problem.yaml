@@ -11,12 +11,12 @@ long_version: |
   - **Low**: Poor reserves, high financial risk  
 
   Historical and survey data give the prior probabilities:
-  - P(Q = High) = 0.30  
-  - P(Q = Medium) = 0.40  
-  - P(Q = Low)   = 0.30  
+  - P(Q = High) = 0.35  
+  - P(Q = Medium) = 0.45
+  - P(Q = Low)   = 0.20  
 
   ### Information-Gathering Option  
-  The company may optionally perform a **Porosity Test** at cost \$0.01 B (i.e.\ \$10 million):  
+  The company may optionally perform a **Porosity Test** at cost \$30M (i.e.\ \$30 million):  
   - **Result R = “Pass”** if porosity ≥ 15%  
   - **Result R = “Fail”** if porosity < 15%  
   - Or skip testing and go straight to the purchase decision.
@@ -26,12 +26,12 @@ long_version: |
   The test provides imperfect but valuable information about the true quality of the field. We can represent the reliability of the test as a conditional probability distribution P(R | Q) where:
 
   **High Quality Fields:**  
-  - P(Pass|high) = 0.90 → Strong indicator of quality  
-  - P(Fail|high) = 0.10 → Rare false negative  
+  - P(Pass|high) = 0.95 → Strong indicator of quality  
+  - P(Fail|high) = 0.05 → Rare false negative  
 
   **Medium Quality Fields:**  
-  - P(Pass|medium) = 0.65 → Moderate correlation  
-  - P(Fail|medium) = 0.35  
+  - P(Pass|medium) = 0.7 → Moderate correlation  
+  - P(Fail|medium) = 0.3  
 
   **Low Quality Fields:**  
   - P(Pass|low) = 0.15 → Rare false positive  
@@ -42,19 +42,19 @@ long_version: |
 
   #### If Test Performed  
   - **Buy (after observing R):**  
-    - Q = High → +\$0.85 B  
-    - Q = Medium → +\$0.43 B  
-    - Q = Low → +\$0.00 B  
-  - **Do Not Buy:** +\$0.25 B  
+    - Q = High → +\$1250M
+    - Q = Medium → +\$630M  
+    - Q = Low → +\$0M  
+  - **Do Not Buy:** +\$350M  
 
-  *(Note: test cost \$0.01 B is already subtracted from all of these figures.)*
+  *(Note: test cost \$30M is already subtracted from all of these figures.)*
 
   #### If No Test  
   - **Buy (direct):**  
-    - Q = High → +\$0.86 B  
-    - Q = Medium → +\$0.44 B  
-    - Q = Low → +\$0.01 B  
-  - **Do Not Buy:** +\$0.26 B  
+    - Q = High → +\$1280M  
+    - Q = Medium → +\$660M  
+    - Q = Low → +\$30M  
+  - **Do Not Buy:** +\$380M  
 
   ### Decision Sequence  
   1. Decide whether to perform the Porosity Test.  
