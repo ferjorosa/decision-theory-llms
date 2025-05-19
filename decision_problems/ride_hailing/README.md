@@ -6,5 +6,4 @@ This problem explores the decision-making process of a ride-hailing company cons
 The problem is modeled using an influence diagram implemented in [PyAgrum](https://pyagrum.readthedocs.io/).
 
 ## Author
-Fernando Rodriguez Sanchez  
-Email: <ferjorosa@gmail.com> / <fernando.rodriguez@ailylabs.com>
+Fernando Rodriguez Sanchez
