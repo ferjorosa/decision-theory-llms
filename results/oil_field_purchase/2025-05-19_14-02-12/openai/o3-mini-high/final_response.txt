@@ -1,0 +1,119 @@
+Below is a step‐by‐step analysis of the decision problem.
+
+──────────────────────────────
+1. Prior Probabilities and Outcomes
+
+The quality Q of the oil field can be:
+ • High with probability 0.35  
+ • Medium with probability 0.45  
+ • Low with probability 0.20
+
+There are two “branches” to consider:
+ A. No Test (skip testing)  
+ B. Test (perform the porosity test at a cost of US$30M)
+
+For each branch, the oil company will then decide whether to buy the field or not.
+──────────────────────────────
+2. No-Test Branch
+
+If the company skips the test, the purchase decision is made under the original probabilities. The net outcomes (in millions) are:
+
+ • If Buy:
+  – Q = High: +1250 +30M compared to tested outcomes becomes +1280M without test  
+  – Q = Medium: +660M  
+  – Q = Low: +30M  
+ • If Not Buy: +380M
+
+Let’s calculate the expected value (EV) if the company decides to buy:
+ EV(buy) = (0.35 × 1280) + (0.45 × 660) + (0.20 × 30)
+
+  = 448 + 297 + 6  
+  = 751 (in millions)
+
+Since not buying yields only 380, buying is clearly preferred.
+ So, EV(No Test) = 751M if the company skips the test and buys the field.
+──────────────────────────────
+3. Test Branch
+
+If the company conducts the porosity test (cost already factored into the payoffs), the outcomes change as follows:
+
+Test reliability is given by:
+ • For High quality: P(Pass | High) = 0.95, P(Fail | High) = 0.05  
+ • For Medium quality: P(Pass | Medium) = 0.70, P(Fail | Medium) = 0.30  
+ • For Low quality: P(Pass | Low) = 0.15, P(Fail | Low) = 0.85  
+
+First, compute the overall probabilities of Pass and Fail:
+
+ P(Pass) = (0.35 × 0.95) + (0.45 × 0.70) + (0.20 × 0.15)
+      = 0.3325 + 0.315 + 0.03
+      = 0.6775
+
+ P(Fail) = 1 – 0.6775 = 0.3225
+
+Then, update the probabilities by Bayes’ rule:
+
+• For a "Pass" result:
+ – P(High | Pass) = (0.95 × 0.35) / 0.6775 ≈ 0.491  
+ – P(Medium | Pass) = (0.70 × 0.45) / 0.6775 ≈ 0.465  
+ – P(Low | Pass) = (0.15 × 0.20) / 0.6775 ≈ 0.044  
+
+• For a "Fail" result:
+ – P(High | Fail) = (0.05 × 0.35) / 0.3225 ≈ 0.054  
+ – P(Medium | Fail) = (0.30 × 0.45) / 0.3225 ≈ 0.419  
+ – P(Low | Fail) = (0.85 × 0.20) / 0.3225 ≈ 0.527  
+
+Next, review the available payoffs (cost of test already deducted):
+
+If the company buys after testing:
+ • Q = High: +1250  
+ • Q = Medium: +630  
+ • Q = Low: +0
+
+If the company does not buy after testing, the payoff is +350.
+
+Now, decide the optimal action for each test outcome:
+
+──────────────────────────────
+Step 3A: Decision after a "Pass" Result
+
+If Pass is observed, the expected payoff from buying is:
+ EV(buy | Pass) = (0.491 × 1250) + (0.465 × 630) + (0.044 × 0)
+          ≈ 613.75 + 292.95 + 0
+          ≈ 906.7
+
+If the company does not buy, it gets 350. Since 906.7 > 350, the optimal decision is to BUY when the test is Pass.
+
+──────────────────────────────
+Step 3B: Decision after a "Fail" Result
+
+If Fail is observed, the expected payoff from buying is:
+ EV(buy | Fail) = (0.054 × 1250) + (0.419 × 630) + (0.527 × 0)
+          ≈ 67.5 + 263.97 + 0
+          ≈ 331.5
+
+Not buying yields 350. Since 350 > 331.5, the optimal decision after a Fail is to NOT BUY.
+
+──────────────────────────────
+Overall EV if Test is Performed
+
+Now, combine the two branches using the probabilities for Pass and Fail:
+ EV(Test) = P(Pass) × (EV given Pass) + P(Fail) × (EV given Fail)
+      = (0.6775 × 906.7) + (0.3225 × 350)
+      ≈ 614.2 + 112.9
+      ≈ 727.1M
+
+──────────────────────────────
+4. Comparison and Final Recommendation
+
+• No-Test Branch (direct buy): EV ≈ 751M  
+• Test Branch (optimal decisions after observing result): EV ≈ 727M
+
+Since 751M > 727M, the expected value is higher if the company skips the test and simply buys the oil field.
+
+──────────────────────────────
+Final Rational Strategy
+
+1. Do NOT perform the porosity test.
+2. Directly purchase the oil field.
+
+This decision maximizes expected utility, as the cost and imperfect information from the test reduce the overall expected payoff.

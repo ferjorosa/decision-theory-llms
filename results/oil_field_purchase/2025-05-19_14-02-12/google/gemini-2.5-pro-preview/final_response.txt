@@ -1,0 +1,148 @@
+Okay, let's break down this oil field investment decision problem step-by-step. We will use expected utility theory to find the optimal strategy.
+
+**Nomenclature:**
+*   T: Decision to perform the Porosity Test
+*   NT: Decision to NOT perform the Porosity Test
+*   B: Decision to Buy the oil field
+*   DB: Decision to Not Buy the oil field
+*   R=Pass: Test result is "Pass"
+*   R=Fail: Test result is "Fail"
+*   Q=High, Q=Medium, Q=Low: True quality of the field
+*   U(Outcome): Utility of an outcome
+*   EU(Action): Expected Utility of an action
+
+**Given Prior Probabilities:**
+*   P(Q=High) = 0.35
+*   P(Q=Medium) = 0.45
+*   P(Q=Low) = 0.20
+
+**Given Test Reliability P(R|Q):**
+*   P(Pass|High) = 0.95, P(Fail|High) = 0.05
+*   P(Pass|Medium) = 0.70, P(Fail|Medium) = 0.30
+*   P(Pass|Low) = 0.15, P(Fail|Low) = 0.85
+
+**Given Utilities (in $M):**
+*   **If Test Performed (net of $30M test cost):**
+    *   U(B, High | T) = 1250
+    *   U(B, Medium | T) = 630
+    *   U(B, Low | T) = 0
+    *   U(DB | T) = 350 (regardless of Q, since we don't buy)
+*   **If No Test Performed:**
+    *   U(B, High | NT) = 1280
+    *   U(B, Medium | NT) = 660
+    *   U(B, Low | NT) = 30
+    *   U(DB | NT) = 380
+
+The decision process is sequential, so we'll work backward from the final decision (Buy/Don't Buy) to the initial decision (Test/No Test).
+
+### Step 1: Analyze the "No Test" (NT) Branch
+
+If the company decides not to perform the test, they must then decide whether to Buy (B) or Not Buy (DB).
+
+1.  **Expected Utility of Buying without a test, EU(B|NT):**
+    EU(B|NT) = P(Q=High) * U(B, High | NT) + P(Q=Medium) * U(B, Medium | NT) + P(Q=Low) * U(B, Low | NT)
+    EU(B|NT) = (0.35 * 1280) + (0.45 * 660) + (0.20 * 30)
+    EU(B|NT) = 448 + 297 + 6
+    EU(B|NT) = $751M
+
+2.  **Expected Utility of Not Buying without a test, EU(DB|NT):**
+    EU(DB|NT) = U(DB | NT) = $380M
+
+3.  **Decision if No Test:**
+    Compare EU(B|NT) and EU(DB|NT).
+    Since EU(B|NT) = $751M > EU(DB|NT) = $380M, if no test is performed, the company should **Buy** the field.
+    The value of the "No Test" branch is therefore **EU(NT) = $751M**.
+
+### Step 2: Analyze the "Test" (T) Branch
+
+If the company performs the test, they first observe the result (Pass or Fail) and then decide to Buy (B) or Not Buy (DB). We need to calculate posterior probabilities P(Q|R) using Bayes' Theorem.
+
+**2a. Calculate Probabilities of Test Outcomes, P(R):**
+*   **P(Pass):**
+    P(Pass) = P(Pass|High)P(High) + P(Pass|Medium)P(Medium) + P(Pass|Low)P(Low)
+    P(Pass) = (0.95 * 0.35) + (0.70 * 0.45) + (0.15 * 0.20)
+    P(Pass) = 0.3325 + 0.3150 + 0.0300
+    P(Pass) = 0.6775
+
+*   **P(Fail):**
+    P(Fail) = P(Fail|High)P(High) + P(Fail|Medium)P(Medium) + P(Fail|Low)P(Low)
+    P(Fail) = (0.05 * 0.35) + (0.30 * 0.45) + (0.85 * 0.20)
+    P(Fail) = 0.0175 + 0.1350 + 0.1700
+    P(Fail) = 0.3225
+    *(Check: P(Pass) + P(Fail) = 0.6775 + 0.3225 = 1.00, which is correct)*
+
+**2b. Calculate Posterior Probabilities P(Q|R):**
+
+*   **If Test Result is "Pass" (R=Pass):**
+    *   P(High|Pass) = [P(Pass|High)P(High)] / P(Pass) = (0.95 * 0.35) / 0.6775 = 0.3325 / 0.6775 ≈ 0.49077
+    *   P(Medium|Pass) = [P(Pass|Medium)P(Medium)] / P(Pass) = (0.70 * 0.45) / 0.6775 = 0.3150 / 0.6775 ≈ 0.46494
+    *   P(Low|Pass) = [P(Pass|Low)P(Low)] / P(Pass) = (0.15 * 0.20) / 0.6775 = 0.0300 / 0.6775 ≈ 0.04428
+    *(Check: 0.49077 + 0.46494 + 0.04428 ≈ 0.99999 ≈ 1.00)*
+
+*   **If Test Result is "Fail" (R=Fail):**
+    *   P(High|Fail) = [P(Fail|High)P(High)] / P(Fail) = (0.05 * 0.35) / 0.3225 = 0.0175 / 0.3225 ≈ 0.05426
+    *   P(Medium|Fail) = [P(Fail|Medium)P(Medium)] / P(Fail) = (0.30 * 0.45) / 0.3225 = 0.1350 / 0.3225 ≈ 0.41860
+    *   P(Low|Fail) = [P(Fail|Low)P(Low)] / P(Fail) = (0.85 * 0.20) / 0.3225 = 0.1700 / 0.3225 ≈ 0.52713
+    *(Check: 0.05426 + 0.41860 + 0.52713 ≈ 0.99999 ≈ 1.00)*
+
+**2c. Calculate Expected Utilities and Decisions after Test Results:**
+
+*   **If Test Result is "Pass" (R=Pass):**
+    *   **EU(B | Pass, T):**
+        EU(B | Pass, T) = P(High|Pass)U(B,High|T) + P(Medium|Pass)U(B,Medium|T) + P(Low|Pass)U(B,Low|T)
+        EU(B | Pass, T) = (0.49077 * 1250) + (0.46494 * 630) + (0.04428 * 0)
+        EU(B | Pass, T) = 613.4625 + 292.9122 + 0
+        EU(B | Pass, T) ≈ $906.37M
+    *   **EU(DB | Pass, T):**
+        EU(DB | Pass, T) = U(DB | T) = $350M
+    *   **Decision if Pass:** Since EU(B | Pass, T) = $906.37M > EU(DB | Pass, T) = $350M, if the test result is "Pass", the company should **Buy**.
+        The value of this path (observing "Pass") is $906.37M.
+
+*   **If Test Result is "Fail" (R=Fail):**
+    *   **EU(B | Fail, T):**
+        EU(B | Fail, T) = P(High|Fail)U(B,High|T) + P(Medium|Fail)U(B,Medium|T) + P(Low|Fail)U(B,Low|T)
+        EU(B | Fail, T) = (0.05426 * 1250) + (0.41860 * 630) + (0.52713 * 0)
+        EU(B | Fail, T) = 67.825 + 263.718 + 0
+        EU(B | Fail, T) ≈ $331.54M
+    *   **EU(DB | Fail, T):**
+        EU(DB | Fail, T) = U(DB | T) = $350M
+    *   **Decision if Fail:** Since EU(DB | Fail, T) = $350M > EU(B | Fail, T) = $331.54M, if the test result is "Fail", the company should **Not Buy**.
+        The value of this path (observing "Fail") is $350M.
+
+**2d. Calculate Overall Expected Utility of Performing the Test, EU(T):**
+EU(T) = P(Pass) * EU(Optimal Action | Pass) + P(Fail) * EU(Optimal Action | Fail)
+EU(T) = (0.6775 * 906.3747) + (0.3225 * 350)
+EU(T) = 614.0699 + 112.875
+EU(T) ≈ $726.94M
+*(Note: The test cost of $30M is already incorporated into the utilities for the "If Test Performed" scenarios, as stated in the problem. So EU(T) is the net expected utility of testing.)*
+
+### Step 3: Final Decision: Test or No Test?
+
+Now we compare the expected utility of the "Test" branch with the "No Test" branch.
+*   EU(NT) = $751M
+*   EU(T) = $726.94M
+
+Since EU(NT) > EU(T), the company should **Not Perform the Porosity Test**.
+
+### Summary of Rational Decisions and Recommendation:
+
+1.  **Initial Decision (Perform Test vs. No Test):**
+    *   The expected utility of not performing the test is EU(NT) = $751M.
+    *   The expected utility of performing the test (and then acting optimally) is EU(T) = $726.94M.
+    *   **Decision:** Choose **No Test** because $751M > $726.94M.
+
+2.  **Subsequent Decision (If No Test is chosen):**
+    *   If No Test is chosen, the decision is between Buy and Not Buy.
+    *   EU(Buy | No Test) = $751M
+    *   EU(Don't Buy | No Test) = $380M
+    *   **Decision:** Choose to **Buy** the oil field.
+
+3.  **(For completeness) Subsequent Decisions (If Test were chosen, even though it's not optimal):**
+    *   If Test were performed and result is "Pass": **Buy** the field (EU $906.37M vs $350M).
+    *   If Test were performed and result is "Fail": **Do Not Buy** the field (EU $350M vs $331.54M).
+
+### Final Recommendation:
+
+The optimal strategy for the oil company is to **not perform the Porosity Test** and proceed directly to **buy the oil field**. This strategy has the highest overall expected utility of **$751 million**.
+
+Even though the test provides information, its cost (implicitly included by reducing payoffs in the "test" branches) and the decision landscape make it slightly less valuable than making an immediate decision based on prior probabilities. Specifically, the information from a "Fail" result would lead to not buying (utility $350M after test cost), which is still a reasonable outcome. However, the chance of a "Pass" leading to a buy, combined with the chance of a "Fail" leading to not buying, doesn't outweigh the expected utility of simply buying without the test. If we were to calculate the Expected Value of Perfect Information (EVPI) or Expected Value of Sample Information (EVSI) for this test, the EVSI would be less than the test cost of $30M, which is consistent with our finding (EU(T) is $726.94M, while EU(NT) is $751M, a difference of $24.06M. This difference is effectively $30M - EVSI_gross, meaning EVSI_gross = $5.94M, which is less than the $30M cost).

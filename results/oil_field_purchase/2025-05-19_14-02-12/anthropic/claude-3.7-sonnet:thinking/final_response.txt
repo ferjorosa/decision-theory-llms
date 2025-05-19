@@ -1,0 +1,79 @@
+# Oil Field Investment Decision Analysis
+
+## Introduction
+The decision problem involves whether to perform a porosity test before deciding to buy an oil field of uncertain quality. I'll analyze this using decision theory and expected utility calculations to determine the optimal strategy.
+
+## Decision Analysis
+
+### Without Test (Direct Decision)
+
+First, let's calculate the expected utility of buying without testing:
+
+- Buy without testing:
+  - P(High) = 0.35, Utility = $1280M
+  - P(Medium) = 0.45, Utility = $660M
+  - P(Low) = 0.20, Utility = $30M
+  - Expected Utility = (0.35 × $1280M) + (0.45 × $660M) + (0.20 × $30M) = $751M
+
+- Don't buy without testing:
+  - Utility = $380M
+
+Since $751M > $380M, the optimal decision without testing would be to buy the field.
+
+### With Test
+
+If we perform the test, we need to calculate what we would do after observing each possible result.
+
+First, let's calculate the probability of each test result:
+- P(Pass) = (0.95 × 0.35) + (0.7 × 0.45) + (0.15 × 0.2) = 0.6775
+- P(Fail) = 1 - 0.6775 = 0.3225
+
+Now, using Bayes' rule, we can calculate the posterior probabilities of each quality level given the test result:
+
+For test result "Pass":
+- P(High|Pass) = (0.95 × 0.35)/0.6775 ≈ 0.491
+- P(Medium|Pass) = (0.7 × 0.45)/0.6775 ≈ 0.465
+- P(Low|Pass) = (0.15 × 0.2)/0.6775 ≈ 0.044
+
+For test result "Fail":
+- P(High|Fail) = (0.05 × 0.35)/0.3225 ≈ 0.054
+- P(Medium|Fail) = (0.3 × 0.45)/0.3225 ≈ 0.419
+- P(Low|Fail) = (0.85 × 0.2)/0.3225 ≈ 0.527
+
+Now, let's calculate the expected utilities after each test result:
+
+1. After observing "Pass":
+   - Buy: (0.491 × $1250M) + (0.465 × $630M) + (0.044 × $0M) ≈ $906.7M
+   - Don't Buy: $350M
+   - Optimal decision after "Pass": Buy (higher utility)
+
+2. After observing "Fail":
+   - Buy: (0.054 × $1250M) + (0.419 × $630M) + (0.527 × $0M) ≈ $331.5M
+   - Don't Buy: $350M
+   - Optimal decision after "Fail": Don't Buy (higher utility)
+
+Finally, the overall expected utility of performing the test is:
+- Expected Utility = (0.6775 × $906.7M) + (0.3225 × $350M) ≈ $727.2M
+
+### Comparison and Decision
+
+- Expected utility of buying without testing: $751M
+- Expected utility of performing the test: $727.2M
+
+Since $751M > $727.2M, the optimal strategy is to skip the test and directly buy the oil field.
+
+## Economic Interpretation
+
+The value of information provided by the test is less than its cost ($30M). Although the test helps avoid buying low-quality fields (which happens with a "Fail" result), this benefit is outweighed by:
+
+1. The cost of the test itself
+2. The possibility of missing profitable opportunities (when medium or high-quality fields generate "Fail" results)
+
+Given that there's an 80% prior probability of medium or high quality, and that even low-quality fields have some value ($30M without testing), the direct purchase strategy maximizes expected utility.
+
+## Recommendation
+
+**Optimal Strategy**: Do not perform the porosity test and directly buy the oil field.
+**Expected Utility**: $751M
+
+This strategy is rational because the expected value of perfect information (about field quality) is less than the cost of acquiring imperfect information through testing.

@@ -1,0 +1,60 @@
+**Step-by-Step Analysis and Recommendation**
+
+### **1. Evaluate "No Test" Option**  
+Calculate expected utility (EU) of buying vs. not buying without testing:  
+- **Buy (direct):**  
+  \( EU = 0.35 \times 1280 + 0.45 \times 660 + 0.20 \times 30 = 751 \, \text{M} \)  
+- **Do Not Buy:**  
+  \( EU = 380 \, \text{M} \)  
+
+**Conclusion:**  
+Buying without testing yields higher utility (\( 751 > 380 \)).
+
+---
+
+### **2. Evaluate "Perform Test" Option**  
+#### **2.1 Calculate Probabilities of Test Results**  
+Using the law of total probability:  
+- \( P(\text{Pass}) = 0.95 \times 0.35 + 0.7 \times 0.45 + 0.15 \times 0.20 = 0.6775 \)  
+- \( P(\text{Fail}) = 1 - 0.6775 = 0.3225 \)  
+
+#### **2.2 Posterior Probabilities Given Test Result**  
+- **If Pass:**  
+  \( P(\text{High|Pass}) = 0.4907, \, P(\text{Medium|Pass}) = 0.4649, \, P(\text{Low|Pass}) = 0.0443 \)  
+- **If Fail:**  
+  \( P(\text{High|Fail}) = 0.0543, \, P(\text{Medium|Fail}) = 0.4186, \, P(\text{Low|Fail}) = 0.5271 \)  
+
+#### **2.3 Expected Utility After Observing Result**  
+- **If Pass:**  
+  \( EU(\text{Buy|Pass}) = 0.4907 \times 1250 + 0.4649 \times 630 + 0.0443 \times 0 = 906.26 \, \text{M} \)  
+  \( EU(\text{Not Buy|Pass}) = 350 \, \text{M} \)  
+  → **Optimal: Buy** (906.26 > 350).  
+
+- **If Fail:**  
+  \( EU(\text{Buy|Fail}) = 0.0543 \times 1250 + 0.4186 \times 630 + 0.5271 \times 0 = 331.59 \, \text{M} \)  
+  \( EU(\text{Not Buy|Fail}) = 350 \, \text{M} \)  
+  → **Optimal: Do Not Buy** (350 > 331.59).  
+
+#### **2.4 Overall Expected Utility of Testing**  
+Weight outcomes by probability of test results:  
+\( EU(\text{Test}) = 0.6775 \times 906.26 + 0.3225 \times 350 = 726.87 \, \text{M} \).  
+
+---
+
+### **3. Compare Both Options**  
+- **No Test:** \( EU = 751 \, \text{M} \)  
+- **Test:** \( EU = 726.87 \, \text{M} \)  
+
+---
+
+### **Final Recommendation**  
+**Do not perform the porosity test and buy the oil field directly.**  
+The expected utility of skipping the test (\( 751 \, \text{M} \)) exceeds the expected utility of testing (\( 726.87 \, \text{M} \)). While the test provides valuable information, its cost (\$30M) outweighs the benefit of reduced uncertainty. The optimal strategy maximizes expected profit by avoiding the test and proceeding with the purchase.  
+
+**Rationale:**  
+- The test’s reliability is insufficient to justify its cost given the prior probabilities.  
+- The "Buy" decision under uncertainty (no test) yields higher expected value than testing and adapting based on results.  
+
+**Decision Sequence:**  
+1. **Skip the porosity test.**  
+2. **Buy the oil field directly.**

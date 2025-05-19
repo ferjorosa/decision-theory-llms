@@ -7,7 +7,7 @@ def save_output(
     messages: List[dict],
     base_path: Path,
     timestamp: str,
-    model: str,
+    dir_name: str,
     print_output: bool = True
 ) -> None:
     """
@@ -18,10 +18,10 @@ def save_output(
         messages (List[dict]): The full message history to save as JSON.
         base_path (Path): Base directory where the results will be stored.
         timestamp (str): Timestamp string to organize result folders.
-        model (str): The model name used (used in folder naming).
+        dir_name (str): Name of the subdirectory to store results in.
     """
     # Create timestamped directory
-    results_dir = base_path / timestamp / model
+    results_dir = base_path / timestamp / dir_name
     results_dir.mkdir(parents=True, exist_ok=True)
 
     # Define file paths

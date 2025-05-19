@@ -1,0 +1,76 @@
+Here are the detailed calculations and results from the analysis:
+
+### Probabilities and Utilities
+
+1. **Prior Probabilities of Quality:**
+   - \( P(\text{High}) = 0.35 \)
+   - \( P(\text{Medium}) = 0.45 \)
+   - \( P(\text{Low}) = 0.20 \)
+
+2. **Test Probabilities:**
+   - \( P(\text{Pass} | \text{High}) = 0.95 \)
+   - \( P(\text{Pass} | \text{Medium}) = 0.70 \)
+   - \( P(\text{Pass} | \text{Low}) = 0.15 \)
+
+   - \( P(\text{Fail} | \text{High}) = 0.05 \)
+   - \( P(\text{Fail} | \text{Medium}) = 0.30 \)
+   - \( P(\text{Fail} | \text{Low}) = 0.85 \)
+
+### Post-Test Probabilities
+
+3. **Calculating the probability of the test outcomes:**
+   - Probability of passing the test:
+     \[
+     P(R = \text{Pass}) = 0.6775
+     \]
+   - Probability of failing the test:
+     \[
+     P(R = \text{Fail}) = 0.3225
+     \]
+
+4. **Post-test probabilities given that the test result is "Pass":**
+   - \( P(\text{High} | R = \text{Pass}) \approx 0.491 \)
+   - \( P(\text{Medium} | R = \text{Pass}) \approx 0.465 \)
+   - \( P(\text{Low} | R = \text{Pass}) \approx 0.044 \)
+
+5. **Post-test probabilities given that the test result is "Fail":**
+   - \( P(\text{High} | R = \text{Fail}) \approx 0.054 \)
+   - \( P(\text{Medium} | R = \text{Fail}) \approx 0.419 \)
+   - \( P(\text{Low} | R = \text{Fail}) \approx 0.527 \)
+
+### Expected Utilities
+
+6. **Buying after a "Pass":**
+   \[
+   E[U | R = \text{Pass}] = 906.38
+   \]
+
+7. **Buying after a "Fail":**
+   \[
+   E[U | R = \text{Fail}] = 331.55
+   \]
+
+8. **Total Expected Utility after the Test:**
+   \[
+   E[U_{\text{test}}] = P(R = \text{Pass}) \cdot E[U | R = \text{Pass}] + P(R = \text{Fail}) \cdot E[U | R = \text{Fail}] - \text{cost of test}
+   \]
+   \[
+   E[U_{\text{test}}] \approx 690.99
+   \]  
+
+### No-Test Option
+
+9. **Expected Utility without performing the test:**
+   - Buying outcomes:
+     \[
+     E[U_{\text{no test}}] = 751.00
+     \]
+
+### Comparison
+
+- **Expected Utility with Test (after cost):** \( 690.99 \)
+- **Expected Utility without Test:** \( 751.00 \)
+
+### Conclusion
+
+The final recommendation based on this analysis is to **NOT perform the Porosity Test** and proceed directly to purchasing the oil field, as this option has a higher expected utility (\$751M) compared to performing the test and adjusting for its cost (\$690.99M).
