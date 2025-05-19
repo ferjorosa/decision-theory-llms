@@ -1,0 +1,184 @@
+long_version: |
+  ## Logistics Center Automation Decision Problem
+
+  ### Decision Context
+
+  An e-commerce company is considering upgrading its logistics center with robotic automation. The company has three strategic options:
+
+  1. **Conventional Robotics System**: This offers moderate automation and proven reliability.
+  2. **Advanced Robotics System**: This system is highly automated and AI-powered, but it carries greater technical risk.
+  3. **Do Nothing**: The current logistics system is retained with no investment.
+
+  ### Optional Feasibility Test
+
+  Before committing to the advanced system, the company may choose to conduct a feasibility test on critical system components. The test costs €10 million and yields one of three results: **bad (b)**, **good (g)**, or **excellent (e)**.
+
+  The test outcome depends on the true performance category of the advanced system:
+
+  - If the system is fully functional (smooth):
+    - Probability of a good result: 0.20
+    - Probability of an excellent result: 0.80
+
+  - If the system is prone to minor failures:
+    - Probability of a bad result: 0.30
+    - Probability of a good result: 0.55
+    - Probability of an excellent result: 0.15
+
+  - If the system is prone to major failures:
+    - Probability of a bad result: 0.40
+    - Probability of a good result: 0.40
+    - Probability of an excellent result: 0.20
+
+  ### Prior Probabilities
+
+  For the **advanced system**, the prior probabilities for each possible state are as follows:
+
+  - Smooth operation: 0.70
+  - Minor failure: 0.20
+  - Major failure: 0.10
+
+  For the **conventional system**, the prior probabilities are:
+
+  - Smooth operation: 0.95
+  - Failure: 0.05
+
+  ### Outcome Utilities
+
+  Utility is expressed in millions of euros and reflects the net value of each scenario.
+
+  #### Utility Notation
+
+  - **T**: Testing strategy (either `test`, `no test`, or `do nothing`)
+  - **I**: Investment decision (`advanced` or `conventional`)
+  - **A**: Outcome for the advanced system (`smooth`, `minor failure`, or `major failure`)
+  - **C**: Outcome for the conventional system (`smooth` or `failure`)
+  - **U**: Utility in € million
+
+  #### Utility Values
+
+  If the company **conducts the test** and then selects the **advanced system**, the utility values (after subtracting the €10M test cost) are:
+
+  - Smooth operation: 140
+  - Minor failure: -50
+  - Major failure: -130
+
+  If the company **conducts the test** and then selects the **conventional system**, the utility values are:
+
+  - Smooth operation: 50
+  - Failure: -40
+
+  If the company **does not conduct the test** and chooses the **advanced system**, the utility values are:
+
+  - Smooth operation: 150
+  - Minor failure: -40
+  - Major failure: -120
+
+  If the company **does not conduct the test** and chooses the **conventional system**, the utility values are:
+
+  - Smooth operation: 60
+  - Failure: -30
+
+  ### Decision Sequence
+
+  The company follows this decision sequence:
+
+  1. Choose whether to conduct the feasibility test.
+  2. If the test is conducted, observe the test result (bad, good, or excellent).
+  3. Update beliefs (posterior probabilities) based on the test result.
+  4. Choose the investment strategy that maximizes expected utility.
+
+long_version_with_tables: |
+  ## Logistics Center Automation Decision Problem
+
+  ### Decision Context
+
+  An e-commerce company is evaluating whether to upgrade its logistics center using **robotic automation**. The company has **three strategic options**:
+
+  1. **Conventional Robotics System** - moderate automation, proven reliability  
+  2. **Advanced Robotics System** - highly automated, AI-powered, but riskier  
+  3. **Do Nothing** - retain the current system  
+
+  ### Optional Feasibility Test
+
+  To reduce uncertainty before committing to the advanced system, the company can conduct a **feasibility test** on critical components. The test costs **€10 million** and provides insight into the likelihood of system success or failure. Test results fall into three categories: *bad (b), good (g), or excellent (e).*  
+  
+  The probability of each test result depends on the actual performance state of the advanced system:  
+
+  - **If the system is fully functional (success):**  
+    - P(g | success) = 0.20  
+    - P(e | success) = 0.80  
+  - **If minor failures are likely:**  
+    - P(b | minor failure) = 0.30  
+    - P(g | minor failure) = 0.55  
+    - P(e | minor failure) = 0.15  
+  - **If major failures are likely:**  
+    - P(b | major failure) = 0.40  
+    - P(g | major failure) = 0.40  
+    - P(e | major failure) = 0.20  
+
+  ### Prior Probabilities
+
+  **Advanced System:**
+
+  | Outcome        | Probability |
+  |----------------|-------------|
+  | Smooth         | 0.70        |
+  | Minor Failure  | 0.20        |
+  | Major Failure  | 0.10        |
+
+  **Conventional System:**
+
+  | Outcome        | Probability |
+  |----------------|-------------|
+  | Smooth         | 0.95        |
+  | Failure        | 0.05        |
+
+  ### Outcome Utilities  
+
+  To evaluate the decision problem, we define the utility of each outcome. Utility reflects the desirability or value of a given scenario, expressed in millions of euros.
+
+  #### Utility Notation
+  - **T**: Testing strategy (`test`, `no test`, or `do nothing`)  
+  - **I**: Investment choice (`advanced`, `conventional`)  
+  - **A**: Advanced system outcome (`smooth`, `minor`, `major`)  
+  - **C**: Conventional system outcome (`smooth`, `failure`)  
+  - **U**: Utility (in € million)  
+
+  #### Utility Values by Scenario
+
+  **Test → Advanced** (post-test values reflect the €10M test cost):
+
+  | Advanced Outcome | Utility (U) |
+  |------------------|-------------|
+  | Smooth           | 140         |
+  | Minor Failure    | -50         |
+  | Major Failure    | -130        |
+
+  **Test → Conventional**:
+
+  | C Outcome   | Utility (U) |
+  |-------------|-------------|
+  | Smooth      | 50          |
+  | Failure     | -40         |
+
+  **No Test → Advanced**:
+
+  | Advanced Outcome | Utility (U) |
+  |------------------|-------------|
+  | Smooth           | 150         |
+  | Minor Failure    | -40         |
+  | Major Failure    | -120        |
+
+  **No Test → Conventional**:
+
+  | C Outcome   | Utility (U) |
+  |-------------|-------------|
+  | Smooth      | 60          |
+  | Failure     | -30         |
+
+  ### Decision Sequence
+
+  1. Decide whether to conduct the feasibility test.  
+  2. If testing, observe the test result.  
+  3. Update beliefs (posterior probabilities) based on the test result.  
+  4. Choose the strategy that maximizes expected utility.
