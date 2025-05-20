@@ -1,0 +1,59 @@
+**Step-by-Step Analysis and Recommendation**
+
+### **1. Evaluate "Do Nothing" Option**
+- Utility = €0 million (no investment or cost).
+- **Expected Utility (EU): 0**
+
+---
+
+### **2. Evaluate "No Test" Options**
+#### **Advanced System (No Test)**
+- **Priors**: Smooth (0.7), Minor (0.2), Major (0.1)
+- **Utilities**: 150, -40, -120  
+  **EU** = (0.7 × 150) + (0.2 × -40) + (0.1 × -120) = **85**
+
+#### **Conventional System (No Test)**
+- **Priors**: Smooth (0.95), Failure (0.05)
+- **Utilities**: 60, -30  
+  **EU** = (0.95 × 60) + (0.05 × -30) = **55.5**
+
+**Best "No Test" Option**: Advanced System (**EU = 85**)
+
+---
+
+### **3. Evaluate "Conduct Test" Option**
+#### **Step 1: Calculate Test Result Probabilities**
+- **P(bad)** = 0.10, **P(good)** = 0.29, **P(excellent)** = 0.61
+
+#### **Step 2: Posterior Probabilities After Test**
+- **After Bad Result**:  
+  Minor (0.6), Major (0.4)  
+  **EU Advanced** = -82, **EU Conventional** = 45.5 → **Choose Conventional**  
+- **After Good Result**:  
+  Smooth (0.48), Minor (0.38), Major (0.14)  
+  **EU Advanced** = 30.7, **EU Conventional** = 45.5 → **Choose Conventional**  
+- **After Excellent Result**:  
+  Smooth (0.92), Minor (0.05), Major (0.03)  
+  **EU Advanced** = 121.8, **EU Conventional** = 45.5 → **Choose Advanced**
+
+#### **Step 3: Expected Utility of Testing**
+- **EU** = (0.10 × 45.5) + (0.29 × 45.5) + (0.61 × 121.8) ≈ **91.5**
+
+---
+
+### **4. Compare All Options**
+| **Option**               | **Expected Utility (€M)** |
+|---------------------------|---------------------------|
+| Do Nothing                | 0                         |
+| No Test → Advanced        | 85                        |
+| No Test → Conventional    | 55.5                      |
+| **Test → Adaptive Choice**| **91.5**                  |
+
+---
+
+### **Final Recommendation**
+The company should **conduct the feasibility test** and adopt the following strategy:
+1. **If the test result is excellent**: Invest in the **Advanced Robotics System** (high upside with minimal risk after confirmation).
+2. **If the test result is good or bad**: Choose the **Conventional Robotics System** (avoid downside risk from unproven technology).
+
+**Rationale**: Testing maximizes expected utility (€91.5M) by resolving uncertainty about the Advanced System’s performance. The test cost (€10M) is justified by the ability to avoid large losses in unfavorable scenarios while capturing upside in favorable ones.

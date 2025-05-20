@@ -1,0 +1,82 @@
+Let's summarize the calculations and information derived for the decision problem regarding the logistics center automation:
+
+### 1. Expected Utility Calculation Without Testing
+
+#### Advanced Robotics System
+- **Probabilities:**
+  - Probability of smooth operation: \(P(\text{Smooth}) = 0.70\)
+  - Probability of minor failure: \(P(\text{Minor}) = 0.20\)
+  - Probability of major failure: \(P(\text{Major}) = 0.10\)
+
+- **Utilities:**
+  - Smooth operation (utility): 150
+  - Minor failure (utility): -40
+  - Major failure (utility): -120
+
+- **Expected Utility:**
+\[
+EU_{\text{Advanced without Test}} = (0.70 \cdot 150) + (0.20 \cdot -40) + (0.10 \cdot -120) = 85.0
+\]
+
+#### Conventional Robotics System
+- **Probabilities:**
+  - Probability of smooth operation: \(P(\text{Smooth}) = 0.95\)
+  - Probability of failure: \(P(\text{Failure}) = 0.05\)
+
+- **Utilities:**
+  - Smooth operation (utility): 60
+  - Failure (utility): -30
+
+- **Expected Utility:**
+\[
+EU_{\text{Conventional without Test}} = (0.95 \cdot 60) + (0.05 \cdot -30) = 55.5
+\]
+
+### 2. Summary of Expected Utilities without Testing
+
+- **Expected Utility for Advanced Robotics System:** 85.0
+- **Expected Utility for Conventional Robotics System:** 55.5
+
+### 3. Expected Utility Calculations With Feasibility Test
+
+The feasibility test costs €10M. The posterior probabilities (after assuming the test results) will influence the utility assessments as follows:
+
+#### Outcome Probabilities after the Test
+
+1. **For Excellent (e):**
+   - Pr(Smooth) remains high leading to a utility of:
+   \[
+   EU_{\text{Advanced, Excellent}} = 140 - 10 = 130
+   \]
+   
+2. **For Good (g):**
+   - Calculated probabilities show expected utilities for the good result as:
+   \[
+   EU_{\text{Advanced, Good}} = 140 - 10 = 130
+   \]
+
+3. **For Bad (b):**
+   - In this case, the outcome utility will yield a significant loss:
+   \[
+   EU_{\text{Advanced, Bad}} = -50 - 10 = -60 
+   \]
+
+### Final Assessment with Test
+
+- **Summary of Expected Utilities With Test (given the outcomes):**
+  - **Excellent:** Expected utility = 130
+  - **Good:** Expected utility = 130
+  - **Bad:** Expected utility = -60
+
+Given the probabilities and outcomes from the test, and expected utilities derived from that, it can be seen:
+
+### Conclusion and Recommendation
+
+1. **Without the test**, selecting the **Advanced Robotics System** yields an **expected utility of 85.0**.
+2. **With the test**, though the decision could yield higher utilities depending on the results (130 for excellent and good), there is still a significant risk of loss from a bad outcome (-60).
+
+Given the higher expected utility without testing and the nature of investment risk involved, the rational decision is:
+
+**Recommendation: Choose the Advanced Robotics System Without Conducting the Feasibility Test.**
+
+This maximizes expected utility, leveraging the higher return potential from upgrading to automated systems while avoiding the potential sunk cost in testing with uncertain outcomes.

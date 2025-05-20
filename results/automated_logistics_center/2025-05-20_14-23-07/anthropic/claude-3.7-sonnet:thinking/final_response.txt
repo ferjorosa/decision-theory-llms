@@ -1,0 +1,109 @@
+# Decision Analysis: Logistics Center Automation
+
+I'll solve this decision problem by working backwards through the decision sequence, calculating expected utilities at each stage.
+
+## Part 1: Posterior Probabilities After Testing
+
+First, I'll calculate the posterior probabilities if the company conducts the test, using Bayes' rule.
+
+Let's denote:
+- S = system is smooth
+- MiF = minor failure
+- MaF = major failure
+- b, g, e = test results (bad, good, excellent)
+
+### Prior Probabilities:
+- P(S) = 0.70
+- P(MiF) = 0.20
+- P(MaF) = 0.10
+
+### Likelihood of Test Results:
+- P(g|S) = 0.20, P(e|S) = 0.80, P(b|S) = 0
+- P(b|MiF) = 0.30, P(g|MiF) = 0.55, P(e|MiF) = 0.15
+- P(b|MaF) = 0.40, P(g|MaF) = 0.40, P(e|MaF) = 0.20
+
+### Calculating P(b), P(g), P(e):
+- P(b) = P(b|S)×P(S) + P(b|MiF)×P(MiF) + P(b|MaF)×P(MaF)
+- P(b) = 0×0.70 + 0.30×0.20 + 0.40×0.10 = 0.06 + 0.04 = 0.10
+
+- P(g) = P(g|S)×P(S) + P(g|MiF)×P(MiF) + P(g|MaF)×P(MaF)
+- P(g) = 0.20×0.70 + 0.55×0.20 + 0.40×0.10 = 0.14 + 0.11 + 0.04 = 0.29
+
+- P(e) = P(e|S)×P(S) + P(e|MiF)×P(MiF) + P(e|MaF)×P(MaF)
+- P(e) = 0.80×0.70 + 0.15×0.20 + 0.20×0.10 = 0.56 + 0.03 + 0.02 = 0.61
+
+### Posterior Probabilities:
+
+**After Bad Result (b):**
+- P(S|b) = P(b|S)×P(S)/P(b) = 0×0.70/0.10 = 0
+- P(MiF|b) = P(b|MiF)×P(MiF)/P(b) = 0.30×0.20/0.10 = 0.60
+- P(MaF|b) = P(b|MaF)×P(MaF)/P(b) = 0.40×0.10/0.10 = 0.40
+
+**After Good Result (g):**
+- P(S|g) = P(g|S)×P(S)/P(g) = 0.20×0.70/0.29 = 0.483
+- P(MiF|g) = P(g|MiF)×P(MiF)/P(g) = 0.55×0.20/0.29 = 0.379
+- P(MaF|g) = P(g|MaF)×P(MaF)/P(g) = 0.40×0.10/0.29 = 0.138
+
+**After Excellent Result (e):**
+- P(S|e) = P(e|S)×P(S)/P(e) = 0.80×0.70/0.61 = 0.918
+- P(MiF|e) = P(e|MiF)×P(MiF)/P(e) = 0.15×0.20/0.61 = 0.049
+- P(MaF|e) = P(e|MaF)×P(MaF)/P(e) = 0.20×0.10/0.61 = 0.033
+
+## Part 2: Expected Utilities After Test Results
+
+### For the conventional system:
+- EU(conventional) = 0.95 × 50 + 0.05 × (-40) = 47.5 - 2 = 45.5
+
+### For the advanced system after each test result:
+
+**After Bad Result:**
+- EU(advanced|b) = 0 × 140 + 0.60 × (-50) + 0.40 × (-130)
+- EU(advanced|b) = 0 - 30 - 52 = -82
+
+**After Good Result:**
+- EU(advanced|g) = 0.483 × 140 + 0.379 × (-50) + 0.138 × (-130)
+- EU(advanced|g) = 67.62 - 18.95 - 17.94 = 30.73
+
+**After Excellent Result:**
+- EU(advanced|e) = 0.918 × 140 + 0.049 × (-50) + 0.033 × (-130)
+- EU(advanced|e) = 128.52 - 2.45 - 4.29 = 121.78
+
+### Optimal Decision After Each Test Result:
+- After Bad Result: Choose Conventional (45.5 > -82)
+- After Good Result: Choose Conventional (45.5 > 30.73)
+- After Excellent Result: Choose Advanced (121.78 > 45.5)
+
+## Part 3: Expected Value of Testing
+
+The expected utility of testing is:
+- P(b) × EU(best option|b) + P(g) × EU(best option|g) + P(e) × EU(best option|e)
+- 0.10 × 45.5 + 0.29 × 45.5 + 0.61 × 121.78
+- 4.55 + 13.20 + 74.29 = 92.04
+
+## Part 4: Expected Utilities Without Testing
+
+### For the conventional system:
+- EU(conventional) = 0.95 × 60 + 0.05 × (-30) = 57 - 1.5 = 55.5
+
+### For the advanced system:
+- EU(advanced) = 0.70 × 150 + 0.20 × (-40) + 0.10 × (-120)
+- EU(advanced) = 105 - 8 - 12 = 85
+
+### Optimal Decision Without Testing:
+Choose the Advanced System (85 > 55.5)
+
+## Final Recommendation
+
+1. **Best Option**: Do not conduct the test and choose the advanced robotics system.
+   - Expected utility: 85 million euros
+
+2. **Reasoning**:
+   - The expected utility of the no-test + advanced system strategy (85) is higher than conducting the test (92.04 - 10 = 82.04).
+   - The test's information value doesn't justify its €10M cost in this scenario.
+   - The advanced system offers significantly higher upside potential, and the prior probability of smooth operation (70%) is strong enough to justify taking the higher risk without testing.
+
+3. **Sensitivity Analysis**:
+   - If the company is particularly risk-averse, the conventional system provides more consistent results with less downside.
+   - However, based purely on expected utility maximization, the advanced system without testing is the optimal choice.
+
+The analysis shows that the company's strong prior belief in the advanced system's success (70%) makes testing unnecessary from a rational decision-making perspective.

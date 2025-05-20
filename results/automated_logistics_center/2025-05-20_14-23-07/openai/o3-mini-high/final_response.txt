@@ -1,0 +1,157 @@
+Below is a step‐by‐step analysis showing how to compare the alternatives and arrive at the optimal decision:
+
+──────────────────────────────
+1. No‐Test Analysis
+
+If the company forgoes testing, it can choose between:
+• Advanced Robotics System (with prior outcomes specified)
+• Conventional Robotics System
+
+For the advanced system (no test), the outcomes (in millions of euros) are:
+ – Smooth: 150  
+ – Minor failure: –40  
+ – Major failure: –120
+
+Using the given prior probabilities for the advanced system (smooth = 0.70, minor = 0.20, major = 0.10), the expected utility is calculated as follows:
+
+ EU(advanced, no test) = 0.70×150 + 0.20×(–40) + 0.10×(–120)
+                 = 105 – 8 – 12 = 85
+
+For the conventional system (no test), the outcomes are:
+ – Smooth: 60  
+ – Failure: –30  
+with probabilities (smooth = 0.95, failure = 0.05). Therefore:
+
+ EU(conventional, no test) = 0.95×60 + 0.05×(–30)
+                 = 57 – 1.5 = 55.5
+
+Thus, without testing the best option would be the advanced system with EU = 85 (and “do nothing” is not quantified but is naturally inferior to making an upgrade).
+
+──────────────────────────────
+2. Test‐Based Analysis
+
+The company may conduct a feasibility test at a cost of €10 million. Importantly, the utilities provided after testing already include this sunk cost. In the test branch the decision maker will observe one of three outcomes: bad (b), good (g), or excellent (e). The probabilities of these outcomes depend on the true state of the advanced system. The prior probabilities for the advanced system are:
+ • Smooth: 0.70  
+ • Minor failure: 0.20  
+ • Major failure: 0.10
+
+The test result probabilities conditional on the state are given as:
+
+ For a smooth system:
+  P(b) = 0  P(g) = 0.20  P(e) = 0.80
+ For a system with minor failures:
+  P(b) = 0.30 P(g) = 0.55  P(e) = 0.15
+ For a system with major failures:
+  P(b) = 0.40 P(g) = 0.40  P(e) = 0.20
+
+a. Compute the Overall Test Result Probabilities
+
+• P(b) = 0.70×0 + 0.20×0.30 + 0.10×0.40  
+    = 0 + 0.06 + 0.04 = 0.10
+
+• P(g) = 0.70×0.20 + 0.20×0.55 + 0.10×0.40  
+    = 0.14 + 0.11 + 0.04 = 0.29
+
+• P(e) = 0.70×0.80 + 0.20×0.15 + 0.10×0.20  
+    = 0.56 + 0.03 + 0.02 = 0.61
+
+b. Update the Beliefs via Bayes’ Rule
+
+For each test outcome, we update the probabilities regarding the state of the advanced system:
+
+──────────────────────────────
+Test Outcome: Bad (b)
+ P(smooth | b) = [P(b | smooth)×0.70] / 0.10 = (0×0.70) / 0.10 = 0  
+ P(minor  | b) = [0.30×0.20] / 0.10 = 0.06 / 0.10 = 0.60  
+ P(major  | b) = [0.40×0.10] / 0.10 = 0.04 / 0.10 = 0.40
+
+──────────────────────────────
+Test Outcome: Good (g)
+ P(smooth | g) = [0.20×0.70] / 0.29 ≈ 0.14 / 0.29 ≈ 0.483  
+ P(minor  | g) = [0.55×0.20] / 0.29 ≈ 0.11 / 0.29 ≈ 0.379  
+ P(major  | g) = [0.40×0.10] / 0.29 ≈ 0.04 / 0.29 ≈ 0.138
+
+──────────────────────────────
+Test Outcome: Excellent (e)
+ P(smooth | e) = [0.80×0.70] / 0.61 ≈ 0.56 / 0.61 ≈ 0.918  
+ P(minor  | e) = [0.15×0.20] / 0.61 ≈ 0.03 / 0.61 ≈ 0.049  
+ P(major  | e) = [0.20×0.10] / 0.61 ≈ 0.02 / 0.61 ≈ 0.033
+
+──────────────────────────────
+c. Compute Conditional Expected Utilities If the Advanced System Is Chosen After Testing
+
+When the test is conducted and the firm commits to the advanced system, the provided (post–test) utility outcomes are (with test cost already subtracted):
+ • Smooth: 140  
+ • Minor failure: –50  
+ • Major failure: –130
+
+Thus, for each test outcome we have:
+
+• For test result b:
+ EU(advanced | b) = 0×140 + 0.60×(–50) + 0.40×(–130)
+       = 0 – 30 – 52 = –82
+
+• For test result g:
+ EU(advanced | g) = 0.483×140 + 0.379×(–50) + 0.138×(–130)
+       ≈ 67.6 – 18.95 – 17.94 ≈ 30.71
+
+• For test result e:
+ EU(advanced | e) = 0.918×140 + 0.049×(–50) + 0.033×(–130)
+       ≈ 128.5 – 2.45 – 4.29 ≈ 121.76
+
+d. Comparison with the Conventional System (if Test Is Conducted)
+
+If the test is performed but the firm opts for the conventional system, the outcomes are:
+ • Smooth: 50  
+ • Failure: –40  
+with probabilities (smooth = 0.95, failure = 0.05). Thus, regardless of the test result (since the test informs only about the advanced system), the expected utility is:
+
+ EU(conventional, test) = 0.95×50 + 0.05×(–40)
+             = 47.5 – 2 = 45.5
+
+e. Decision Rule After Testing
+
+For each test outcome, the company should choose the investment alternative that gives the higher expected utility:
+
+• If test result is Bad (b):
+ – Advanced: –82  
+ – Conventional: 45.5  
+ → Choose Conventional
+
+• If test result is Good (g):
+ – Advanced: ≈ 30.7  
+ – Conventional: 45.5  
+ → Choose Conventional
+
+• If test result is Excellent (e):
+ – Advanced: ≈ 121.8  
+ – Conventional: 45.5  
+ → Choose Advanced
+
+f. Overall Expected Utility of the Testing Strategy
+
+Weight the payoffs by the test outcome probabilities:
+
+ EU(test) = P(b)×45.5 + P(g)×45.5 + P(e)×121.8  
+     = 0.10×45.5 + 0.29×45.5 + 0.61×121.8  
+     = 4.55 + 13.20 + 74.30  
+     ≈ 92.05
+
+──────────────────────────────
+3. Final Comparison & Recommendation
+
+• Without testing, the best alternative is to choose the advanced system directly with an expected utility of €85M.  
+• With testing, by following the decision rule (choose conventional if test yields “bad” or “good,” and advanced only if “excellent”), the overall expected utility increases to approximately €92M.
+
+Thus, the testing option provides an expected gain (or value of information) of roughly €7M.
+
+──────────────────────────────
+Final Recommendation
+
+• At the strategic level, the company should choose to conduct the feasibility test prior to making the investment decision.  
+• Following the test, the optimal actions are:
+ – If the test result is Excellent: Invest in the Advanced Robotics System.  
+ – If the test result is Good or Bad: Invest in the Conventional Robotics System.
+• (The “do nothing” option is dominated by these investment alternatives based on the utilities provided.)
+
+This decision maximizes the firm’s expected value by using the test information to avoid the high downside risk associated with the advanced system in cases where the test does not indicate a promising outcome.

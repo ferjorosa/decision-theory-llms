@@ -1,0 +1,154 @@
+Okay, this is a classic decision analysis problem that can be solved using a decision tree and backward induction, maximizing expected utility at each decision node.
+
+Let's define our notation:
+*   **A**: Advanced System state (s: smooth, m: minor failure, M: major failure)
+*   **C**: Conventional System state (s: smooth, f: failure)
+*   **E**: Test Result for Advanced System (b: bad, g: good, e: excellent)
+*   **U()**: Utility
+*   **EU()**: Expected Utility
+*   **P()**: Probability
+
+**Assumptions:**
+1.  The utility of "Do Nothing" (retain current system) is €0 million. This serves as our baseline.
+2.  The test only provides information about the Advanced system; it does not change our beliefs about the Conventional system.
+3.  The utility values provided for scenarios involving the test *already* account for the €10 million test cost, as stated.
+
+Let's work backward (Rollback Method):
+
+**Step 1: Expected Utilities (EU) of Investment Choices WITHOUT Testing**
+
+*   **EU(Advanced System | No Test)**:
+    *   U(No Test, Advanced, A=s) = 150
+    *   U(No Test, Advanced, A=m) = -40
+    *   U(No Test, Advanced, A=M) = -120
+    *   P(A=s) = 0.70
+    *   P(A=m) = 0.20
+    *   P(A=M) = 0.10
+    *   EU(Advanced | No Test) = (0.70 * 150) + (0.20 * -40) + (0.10 * -120)
+        = 105 - 8 - 12 = **€85 million**
+
+*   **EU(Conventional System | No Test)**:
+    *   U(No Test, Conventional, C=s) = 60
+    *   U(No Test, Conventional, C=f) = -30
+    *   P(C=s) = 0.95
+    *   P(C=f) = 0.05
+    *   EU(Conventional | No Test) = (0.95 * 60) + (0.05 * -30)
+        = 57 - 1.5 = **€55.5 million**
+
+*   **EU(Do Nothing | No Test)**:
+    *   By assumption, U(Do Nothing) = **€0 million**
+
+**Decision if NO TEST is conducted:**
+Compare EUs: Max(€85M, €55.5M, €0M) = €85M.
+So, if the company does not test, it should choose the **Advanced Robotics System**.
+The overall Expected Utility of the "No Test" path is **EU(No Test Path) = €85 million**.
+
+---
+
+**Step 2: Analysis if the Feasibility Test IS Conducted**
+
+First, we need to calculate the probability of each test result (P(E=b), P(E=g), P(E=e)) using the law of total probability: P(E) = Σ P(E|A_i)P(A_i)
+
+*   **P(E=b)** = P(E=b|A=s)P(A=s) + P(E=b|A=m)P(A=m) + P(E=b|A=M)P(A=M)
+    = (0.00 * 0.70) + (0.30 * 0.20) + (0.40 * 0.10)
+    = 0 + 0.06 + 0.04 = **0.10**
+
+*   **P(E=g)** = P(E=g|A=s)P(A=s) + P(E=g|A=m)P(A=m) + P(E=g|A=M)P(A=M)
+    = (0.20 * 0.70) + (0.55 * 0.20) + (0.40 * 0.10)
+    = 0.14 + 0.11 + 0.04 = **0.29**
+
+*   **P(E=e)** = P(E=e|A=s)P(A=s) + P(E=e|A=m)P(A=m) + P(E=e|A=M)P(A=M)
+    = (0.80 * 0.70) + (0.15 * 0.20) + (0.20 * 0.10)
+    = 0.56 + 0.03 + 0.02 = **0.61**
+
+    *Check: 0.10 + 0.29 + 0.61 = 1.00. Correct.*
+
+Next, we need the posterior probabilities of the Advanced System's state given each test result, using Bayes' Theorem: P(A_i|E) = [P(E|A_i)P(A_i)] / P(E)
+
+*   **A. If Test Result is "bad" (E=b), P(E=b) = 0.10:**
+    *   P(A=s|E=b) = (P(E=b|A=s)P(A=s)) / P(E=b) = (0.00 * 0.70) / 0.10 = 0
+    *   P(A=m|E=b) = (P(E=b|A=m)P(A=m)) / P(E=b) = (0.30 * 0.20) / 0.10 = 0.06 / 0.10 = 0.60
+    *   P(A=M|E=b) = (P(E=b|A=M)P(A=M)) / P(E=b) = (0.40 * 0.10) / 0.10 = 0.04 / 0.10 = 0.40
+    *   *Check: 0 + 0.60 + 0.40 = 1.00. Correct.*
+
+    Now, calculate EUs of investment choices given E=b (Utilities include test cost):
+    *   EU(Advanced | Test, E=b) = (0 * 140) + (0.60 * -50) + (0.40 * -130)
+        = 0 - 30 - 52 = **-€82 million**
+    *   EU(Conventional | Test, C=s) = 50, U(Test, Conventional, C=f) = -40
+        EU(Conventional | Test) = (0.95 * 50) + (0.05 * -40) = 47.5 - 2 = **€45.5 million**
+        *(This EU is constant regardless of E, as the test provides no info on C)*
+    *   EU(Do Nothing | Test) = Utility of doing nothing (0) - Test Cost (10) = **-€10 million**
+        *(The problem statement indicates the given utilities U(Test, ...) already subtract the €10M test cost. So if we conduct the test THEN do nothing, the utility would be the utility of doing nothing (0) minus the cost of the test if it wasn't already factored into a "Do Nothing post-test" utility line. A simpler interpretation: A "Do Nothing" path after testing means we incurred the test cost and received no operational benefit. The utilities provided for "Test" scenarios (Advanced/Conventional) have the -10M test cost embedded. Thus, if "Do Nothing" is chosen after the test, its utility is 0 (operational) - 10 (test cost) = -10M).*
+
+    **Decision if Test = "bad":** Max(-€82M, €45.5M, -€10M) = €45.5M.
+    Choose **Conventional System**. Optimal EU(Decision | E=b) = €45.5 million.
+
+*   **B. If Test Result is "good" (E=g), P(E=g) = 0.29:**
+    *   P(A=s|E=g) = (P(E=g|A=s)P(A=s)) / P(E=g) = (0.20 * 0.70) / 0.29 = 0.14 / 0.29 ≈ 0.48276
+    *   P(A=m|E=g) = (P(E=g|A=m)P(A=m)) / P(E=g) = (0.55 * 0.20) / 0.29 = 0.11 / 0.29 ≈ 0.37931
+    *   P(A=M|E=g) = (P(E=g|A=M)P(A=M)) / P(E=g) = (0.40 * 0.10) / 0.29 = 0.04 / 0.29 ≈ 0.13793
+    *   *Check: 0.48276 + 0.37931 + 0.13793 ≈ 1.00. Correct.*
+
+    Now, calculate EUs of investment choices given E=g:
+    *   EU(Advanced | Test, E=g) = (0.48276 * 140) + (0.37931 * -50) + (0.13793 * -130)
+        = 67.5864 - 18.9655 - 17.9309 ≈ **€30.69 million**
+    *   EU(Conventional | Test) = **€45.5 million** (as calculated before)
+    *   EU(Do Nothing | Test) = **-€10 million** (as calculated before)
+
+    **Decision if Test = "good":** Max(€30.69M, €45.5M, -€10M) = €45.5M.
+    Choose **Conventional System**. Optimal EU(Decision | E=g) = €45.5 million.
+
+*   **C. If Test Result is "excellent" (E=e), P(E=e) = 0.61:**
+    *   P(A=s|E=e) = (P(E=e|A=s)P(A=s)) / P(E=e) = (0.80 * 0.70) / 0.61 = 0.56 / 0.61 ≈ 0.91803
+    *   P(A=m|E=e) = (P(E=e|A=m)P(A=m)) / P(E=e) = (0.15 * 0.20) / 0.61 = 0.03 / 0.61 ≈ 0.04918
+    *   P(A=M|E=e) = (P(E=e|A=M)P(A=M)) / P(E=e) = (0.20 * 0.10) / 0.61 = 0.02 / 0.61 ≈ 0.03279
+    *   *Check: 0.91803 + 0.04918 + 0.03279 ≈ 1.00. Correct.*
+
+    Now, calculate EUs of investment choices given E=e:
+    *   EU(Advanced | Test, E=e) = (0.91803 * 140) + (0.04918 * -50) + (0.03279 * -130)
+        = 128.5242 - 2.459 - 4.2627 ≈ **€121.80 million**
+    *   EU(Conventional | Test) = **€45.5 million** (as calculated before)
+    *   EU(Do Nothing | Test) = **-€10 million** (as calculated before)
+
+    **Decision if Test = "excellent":** Max(€121.80M, €45.5M, -€10M) = €121.80M.
+    Choose **Advanced System**. Optimal EU(Decision | E=e) = €121.80 million.
+
+Now, calculate the overall Expected Utility OF CONDUCTING THE TEST.
+This is the sum of (probability of each test outcome * optimal EU for that outcome).
+The utilities for the Advanced and Conventional options *after testing* already have the test cost factored in.
+
+*   EU(Test Path) = P(E=b) * EU(Decision|E=b) + P(E=g) * EU(Decision|E=g) + P(E=e) * EU(Decision|E=e)
+    = (0.10 * €45.5M) + (0.29 * €45.5M) + (0.61 * €121.80M)
+    = €4.55M + €13.195M + €74.298M
+    = **€92.043 million**
+
+---
+
+**Step 3: Final Decision - Conduct Test or Not?**
+
+Compare the overall Expected Utility of each initial choice:
+*   EU(No Test Path) = **€85 million** (leading to choosing Advanced System)
+*   EU(Test Path) = **€92.043 million**
+
+Since €92.043M > €85M, the rational decision is to **conduct the feasibility test**.
+
+---
+
+**Summary of Rational Decisions and Recommendations:**
+
+1.  **Initial Decision:** The company should **conduct the feasibility test** because it leads to a higher overall expected utility (€92.043M vs €85M).
+
+2.  **Subsequent Decisions (Contingent on Test Result):**
+    *   **If the test result is "bad" (b):** The company should invest in the **Conventional Robotics System**.
+        *   (EU for this branch point, including test costs: €45.5M)
+    *   **If the test result is "good" (g):** The company should invest in the **Conventional Robotics System**.
+        *   (EU for this branch point, including test costs: €45.5M)
+    *   **If the test result is "excellent" (e):** The company should invest in the **Advanced Robotics System**.
+        *   (EU for this branch point, including test costs: €121.80M)
+
+**Final Recommendation:**
+The company should proceed with the €10 million feasibility test.
+*   If the test yields a "bad" or "good" result, the company should then invest in the Conventional Robotics System.
+*   If the test yields an "excellent" result, the company should then invest in the Advanced Robotics System.
+
+Following this strategy maximizes the company's expected utility to approximately **€92.043 million**.

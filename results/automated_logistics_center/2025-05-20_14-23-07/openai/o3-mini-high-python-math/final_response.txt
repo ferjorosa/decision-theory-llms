@@ -1,0 +1,79 @@
+Below is a concise explanation and recommendation based on a full expected utility analysis.
+
+──────────────────────────────
+1. No‐Test Option
+
+Without a test the company must choose between:
+ a. Advanced Robotics System (with outcomes):
+  • Smooth: 150  
+  • Minor failure: –40  
+  • Major failure: –120  
+  with prior probabilities 0.70, 0.20, 0.10 respectively, yielding:
+
+  EU(advanced, no test) = 0.70×150 + 0.20×(–40) + 0.10×(–120) = 105 – 8 – 12 = 85
+
+ b. Conventional Robotics System (with outcomes):
+  • Smooth: 60  
+  • Failure: –30  
+  with probabilities 0.95 and 0.05, respectively, yielding:
+
+  EU(conventional, no test) = 0.95×60 + 0.05×(–30) = 57 – 1.5 = 55.5
+
+Thus in a no-test scenario, advanced (EU ≈ 85) dominates conventional (EU ≈ 55.5).
+
+──────────────────────────────
+2. Testing Option
+
+By investing €10M in a feasibility test, the decision maker gets additional information:
+ • The test can return one of three outcomes – Bad (b), Good (g), or Excellent (e).  
+ • The test outcome probabilities (overall) are:
+  P(b) = 0.10, P(g) = 0.29, P(e) = 0.61
+
+After the test, the firm updates its beliefs about the state of the advanced system and then chooses between:
+ a. Advanced Robotics System (with post–test utility outcomes):
+  • Smooth: 140  
+  • Minor failure: –50  
+  • Major failure: –130  
+ b. Conventional Robotics System (with outcomes):
+  • Smooth: 50  
+  • Failure: –40  
+  which yields an EU of 0.95×50 + 0.05×(–40) = 45.5, regardless of the test result (since the test informs only about the advanced system’s risk level).
+
+Using Bayes’ rule we find:
+ • After a Bad (b) result:
+  P(smooth | b)=0, 
+  P(minor | b)=0.60, 
+  P(major | b)=0.40,  
+  Then, EU(advanced | b) = 0×140 + 0.60×(–50) + 0.40×(–130) = –82  
+  → Here, conventional (EU = 45.5) is preferred.
+ • After a Good (g) result:
+  P(smooth | g) ≈ 0.483, 
+  P(minor | g) ≈ 0.379, 
+  P(major | g) ≈ 0.138,  
+  Then, EU(advanced | g) ≈ 0.483×140 + 0.379×(–50) + 0.138×(–130) ≈ 30.7  
+  → Again, conventional (EU = 45.5) is preferred.
+ • After an Excellent (e) result:
+  P(smooth | e) ≈ 0.918, 
+  P(minor | e) ≈ 0.049, 
+  P(major | e) ≈ 0.033,  
+  Then, EU(advanced | e) ≈ 0.918×140 + 0.049×(–50) + 0.033×(–130) ≈ 121.8  
+  → In this case, advanced is clearly preferred over conventional.
+
+Weighting these decisions by the overall test outcome probabilities yields:
+
+ EU(test strategy) = P(b)×45.5 + P(g)×45.5 + P(e)×121.8  
+          ≈ 0.10×45.5 + 0.29×45.5 + 0.61×121.8  
+          ≈ 4.55 + 13.20 + 74.30 ≈ 92.05
+
+──────────────────────────────
+3. Final Recommendation
+
+• Without testing, the highest expected utility is 85 (by choosing advanced directly).  
+• By conducting the feasibility test, the overall expected utility increases to roughly 92.
+
+Optimal Strategy:
+ 1. Invest €10M in the feasibility test.  
+ 2. If the test result is Excellent, select the Advanced Robotics System.  
+ 3. If the test result is Bad or Good, choose the Conventional Robotics System.
+
+This approach maximizes expected utility while mitigating the downside risk of the advanced system. Therefore, the rational decision is to conduct the feasibility test and then decide based on its outcome.
