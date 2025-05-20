@@ -1,0 +1,32 @@
+long_version: |
+  ## Ride-Hailing Customer Retention Decision Problem
+  A ride-hailing company must decide whether to make a special offer to existing subscribers to improve customer retention. Customers differ in their type: they are either 'Good' or 'Bad', and this affects how profitable they are when retained.
+
+  ### Customer Types:
+  - Good customers use the service often and are profitable.
+  - Bad customers use the service infrequently and cost more than they bring in.
+
+  Prior Probabilities:
+  - The probability that a customer is Good is 0.9.
+  - The probability that a customer is Bad is 0.1.
+
+  ### Retention Probabilities:
+  If the company makes an offer:
+  - A Good customer stays with probability 0.85 and leaves with probability 0.15.
+  - A Bad customer stays with probability 0.90 and leaves with probability 0.10.
+
+  If the company does not make an offer:
+  - A Good customer stays with probability 0.75 and leaves with probability 0.25.
+  - A Bad customer stays with probability 0.15 and leaves with probability 0.85.
+
+  ### Utilities (in euros) for different outcomes
+  - If a Good customer stays: +100
+  - If a Bad customer stays: -850
+  - If any customer leaves: 0
+
+  The cost of making the offer is considered negligible. The company’s utility only changes based on which customers are retained.
+
+  ### Decision Sequence
+  1. The company decides whether to make a special offer.
+  2. The customer decides to stay or leave based on their type and the presence of an offer.
+  3. The company receives utility based on whether the customer stayed and their type.
