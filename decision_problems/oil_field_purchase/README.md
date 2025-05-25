@@ -21,10 +21,10 @@ Key components of this project:
 ## Locally launch the Gradio app
 
 ```shell
-docker build -t oil-field-purchase-decision .
-```
+cd decision_problems/oil_field_purchase/gradio_app
 
-```shell
+docker build -t oil-field-purchase-decision .
+
 docker run -p 7860:7860 oil-field-purchase-decision
 ```
 
