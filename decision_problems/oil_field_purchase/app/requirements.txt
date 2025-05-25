@@ -1,0 +1,6 @@
+gradio
+pyagrum>=2.1.0
+pandas
+numpy
+pycairo
+cairosvg>=2.8.2
