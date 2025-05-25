@@ -10,13 +10,23 @@ The problem is modeled using an influence diagram implemented in [PyAgrum](https
 Key components of this project:
 
 *   **`notebook.ipynb`**: Interactive Jupyter notebook with problem formulation and analysis using both an influence diagram and a decision tree.
-*   **`app/`**: Gradio web application for exploring the decision problem.
-    *   `gradio_app.py`: Main application script
+*   **`gradio_app/`**: Gradio web application: ([ferjorosa/oil-field-purchase-decision](https://huggingface.co/spaces/ferjorosa/oil-field-purchase-decision))
+    *   `app.py`: Main application script
     *   `Dockerfile`: Container configuration for local testing and private deployment
     *   `requirements.txt`: Python dependencies
-    *   `apt.txt`: System dependencies
+    *   `packages.txt`: System dependencies
 *   **`images/`**: Image assets for the notebook and web app
 *   **`problem.yaml`**: Structured problem description for LLM evaluation
+
+## Locally launch the Gradio app
+
+```shell
+docker build -t oil-field-purchase-decision .
+```
+
+```shell
+docker run -p 7860:7860 oil-field-purchase-decision
+```
 
 ## Author
 Fernando Rodriguez Sanchez

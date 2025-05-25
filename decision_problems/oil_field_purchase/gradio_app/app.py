@@ -142,72 +142,80 @@ def show_inference(q_cpt_input, r_cpt_input, u_table_input):
 
 # Gradio UI
 with gr.Blocks(title="Oil Field Purchase Decision Analysis") as demo:
-    gr.Markdown("""
-    # Oil Field Purchase Decision Analysis
+    gr.HTML("""
+    <h1>Oil Field Purchase Decision Analysis</h1>
     """) # Main title
 
-    gr.Markdown("""
-    This decision support tool helps an oil company analyze whether to perform a geological test on a potential oil field and subsequently whether to purchase it. The analysis considers the uncertain quality of the field, the imperfect nature of the test, and the company's valuation of different outcomes to recommend an optimal strategy.
+    gr.HTML("""
+    <p>This decision support tool helps an oil company analyze whether to perform a geological test on a potential oil field and subsequently whether to purchase it. The analysis considers the uncertain quality of the field, the imperfect nature of the test, and the company's valuation of different outcomes to recommend an optimal strategy.</p>
     """) # Brief summary
 
     with gr.Accordion("Detailed Problem Description", open=False):
-        gr.Markdown("""
-        An oil company is considering the <span style="color: red"><b>decision</b></span> (<span style="color: red"><b>B</b></span>) to buy an oil field. The oil field can have three quality levels (<span style="color: purple"><b>Q</b></span>): high, medium, and low. The company obviously does not know the "real" qaulity of the field beforehand, but it can provide an estimation (i.e., <span style="color: purple"><b>uncertainty</b></span> ) using historical data and imagery. **It is willing to pay a higher price for the field as its quality increases**.
+        gr.HTML("""
+        <p>An oil company is considering the <span style="color: red"><b>decision</b></span> (<span style="color: red"><b>B</b></span>) to buy an oil field. The oil field can have three quality levels (<span style="color: purple"><b>Q</b></span>): high, medium, and low. The company obviously does not know the "real" qaulity of the field beforehand, but it can provide an estimation (i.e., <span style="color: purple"><b>uncertainty</b></span> ) using historical data and imagery. <b>It is willing to pay a higher price for the field as its quality increases</b>.</p>
 
-        Before making the buy decision, the company needs to <span style="color: red"><b>decide</b></span> (<span style="color: red"><b>T</b></span>) if it wants to perform a geological test. This test will have a certain cost and its results (<span style="color: purple"><b>R</b></span>) will not be exact predictions about the quality of the field, but will provide a report on the porosity of the reservoir (high porosity generally indicates greater oil potential). The test will not be infallible, and thus contain a certain degree of <span style="color: purple"><b>uncertainty</b></span>. The test can have two possible outcomes:
+        <p>Before making the buy decision, the company needs to <span style="color: red"><b>decide</b></span> (<span style="color: red"><b>T</b></span>) if it wants to perform a geological test. This test will have a certain cost and its results (<span style="color: purple"><b>R</b></span>) will not be exact predictions about the quality of the field, but will provide a report on the porosity of the reservoir (high porosity generally indicates greater oil potential). The test will not be infallible, and thus contain a certain degree of <span style="color: purple"><b>uncertainty</b></span>. The test can have two possible outcomes:</p>
 
-        *   **Pass:** The porosity of the reservoir rock is equal to or greater than 15%, indicating significant oil potential.
-        *   **Fail:** The porosity of the reservoir rock is less than 15%, indicating low oil potential.
+        <ul>
+            <li><b>Pass:</b> The porosity of the reservoir rock is equal to or greater than 15%, indicating significant oil potential.</li>
+            <li><b>Fail:</b> The porosity of the reservoir rock is less than 15%, indicating low oil potential.</li>
+        </ul>
                     
         <table>
-          <tr>
+        <tr>
             <td>
-              <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/refs/heads/main/decision_problems/oil_field_purchase/images/rock_porosity.jpg" alt="Rock porosity examples" width="600">
+            <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/main/decision_problems/oil_field_purchase/images/rock_porosity.jpg" alt="Rock porosity examples" width="600">
             </td>
-          </tr>
-          <tr>
-            <td align="center"><i><b>Figure 1.</b> Reservoir quality illustrated through porosity and permeability characteristics</i></td>
-          </tr>
+        </tr>
+        <tr>
+            <td align="center">
+            <i><b>Figure 1.</b> Reservoir quality illustrated through porosity and permeability characteristics</i>
+            </td>
+        </tr>
         </table>
 
-        The chronological sequence of the decision process is as follows:
 
-        1.  The company decides whether or not to perform the geological test.
-        2.  If the test is performed, the results are observed.
-        3.  The company decides whether or not to buy the oil field.
+        <p>The chronological sequence of the decision process is as follows:</p>
 
-        There is still residual uncertainty in the problem that affects utility: **What is the actual state of the oil field?**
+        <ol>
+            <li>The company decides whether or not to perform the geological test.</li>
+            <li>If the test is performed, the results are observed.</li>
+            <li>The company decides whether or not to buy the oil field.</li>
+        </ol>
 
-        In this example, it seems logical for the company to buy the oil field after obtaining a "pass" result, but this is not always the case. It will depend on its specific a priori beliefs about the quality of the land (for example, based on its historical data on oil fields with similar characteristics), the intrinsic uncertainty of the test (for example, the test may give a positive result but the field is not actually suitable, or vice versa) and how the company values the possible consequences.
+        <p>There is still residual uncertainty in the problem that affects utility: <b>What is the actual state of the oil field?</b></p>
+
+        <p>In this example, it seems logical for the company to buy the oil field after obtaining a "pass" result, but this is not always the case. It will depend on its specific a priori beliefs about the quality of the land (for example, based on its historical data on oil fields with similar characteristics), the intrinsic uncertainty of the test (for example, the test may give a positive result but the field is not actually suitable, or vice versa) and how the company values the possible consequences.</p>
         """) # Long description inside accordion
 
-    gr.Markdown("""
-    ---
-    Enter the prior probability distribution of oil field quality and the conditional probability distribution of the porosity test result.
+    gr.HTML("""
+    <hr>
+    <p>Enter the prior probability distribution of oil field quality and the conditional probability distribution of the porosity test result.</p>
     """) # Subtitle for inputs
 
     with gr.Row():
         with gr.Column():
-            gr.Markdown("### Prior Probability Distribution of Oil Field Quality (<span style='color: purple'><b>Q</b></span>)")
+            gr.HTML("<h3>Prior Probability Distribution of Oil Field Quality (<span style='color: purple'><b>Q</b></span>)</h3>")
             with gr.Accordion("More Information", open=False): # Accordion Title simplified
-                gr.Markdown("""
-                These probabilities represent the company's belief on the oil field quality. We can imagine they were estimated based on historical information from the oil company's past exploration of similar oil fields. For example, the company could have a classification model that predicts the oil field quality by using [satellite imagery and geographical location data](https://www.satimagingcorp.com/applications/energy/exploration/oil-exploration/).
+                gr.HTML("""
+                <p>These probabilities represent the company's belief on the oil field quality. We can imagine they were estimated based on historical information from the oil company's past exploration of similar oil fields. For example, the company could have a classification model that predicts the oil field quality by using <a href="https://www.satimagingcorp.com/applications/energy/exploration/oil-exploration/">satellite imagery and geographical location data</a>.</p>
 
                 <table>
-                  <tr>
+                <tr>
                     <td>
-                      <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/refs/heads/main/decision_problems/oil_field_purchase/images/oil_field_image.jpg" alt="Oil field image" width="400">
+                    <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/main/decision_problems/oil_field_purchase/images/oil_field_image.jpg" alt="Oil field image" width="400">
                     </td>
                     <td>
-                      <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/refs/heads/main/decision_problems/oil_field_purchase/images/oil_field_heatmap.jpg" alt="Oil field heatmap" width="400">
+                    <img src="https://raw.githubusercontent.com/ferjorosa/decision-theory-llms/main/decision_problems/oil_field_purchase/images/oil_field_heatmap.jpg" alt="Oil field heatmap" width="400">
                     </td>
-                  </tr>
-                  <tr>
+                </tr>
+                <tr>
                     <td colspan="2" align="center">
-                      <i><b>Figure 2.</b> Satellite imagery and heatmap of the oil field</i>
+                    <i><b>Figure 2.</b> Satellite imagery and heatmap of the oil field</i>
                     </td>
-                  </tr>
+                </tr>
                 </table>
+
                 """)
             q_cpt_input = gr.Dataframe(
                 value=q_cpt,
@@ -218,14 +226,14 @@ with gr.Blocks(title="Oil Field Purchase Decision Analysis") as demo:
                 # label="Prior Probability Distribution of Oil Field Quality" # Removed label
             )
 
-            gr.Markdown("### Conditional Probability Distribution of the Porosity Test Result (<span style='color: purple'><b>R</b></span>)") # New Main Title for R
+            gr.HTML("<h3>Conditional Probability Distribution of the Porosity Test Result (<span style='color: purple'><b>R</b></span>)</h3>") # New Main Title for R
             with gr.Accordion("More Information", open=False): # Accordion for R
-                gr.Markdown("""
-                The results of the porosity test are directly related to the actual quality of the oil field (Q).
+                gr.HTML("""
+                <p>The results of the porosity test are directly related to the actual quality of the oil field (Q).
                 In a perfect scenario, the test would be highly accurate.
                 However, real-world tests are not perfect. The table below introduces these measurement
                 imperfections by showing the conditional probability of each test result given the
-                true quality of the oil field.
+                true quality of the oil field.</p>
                 """)
             r_cpt_input = gr.Dataframe(
                 value=r_cpt,
@@ -236,18 +244,20 @@ with gr.Blocks(title="Oil Field Purchase Decision Analysis") as demo:
                 # label="Conditional Probability Distribution of the Porosity Test Result" # Removed label
             )
 
-            gr.Markdown("### Utility Table (<span style='color: red'><b>U</b></span>)") # New Main Title for U
+            gr.HTML("<h3>Utility Table (<span style='color: red'><b>U</b></span>)</h3>") # New Main Title for U
             with gr.Accordion("More Information", open=False): # Accordion for U
-                gr.Markdown("""
-                The utility table quantifies the expected value or 'utility' for each possible outcome in the decision problem. It reflects the company's preferences and the financial (or other) consequences associated with different sequences of decisions (whether to conduct a test, whether to buy the field) and the underlying quality of the oil field.
+                gr.HTML("""
+                <p>The utility table quantifies the expected value or 'utility' for each possible outcome in the decision problem. It reflects the company's preferences and the financial (or other) consequences associated with different sequences of decisions (whether to conduct a test, whether to buy the field) and the underlying quality of the oil field.</p>
 
-                For example:
-                *   Performing a test typically incurs a cost, which would be factored into the utility values for scenarios where 'T' is 'do'.
-                *   Successfully buying a high-quality field ('B' is 'buy', 'Q' is 'high') should result in a high utility.
-                *   Buying a low-quality field might lead to a lower utility or even a net loss.
-                *   Choosing not to buy the field might result in a baseline utility, potentially representing saved investment or a small return from an alternative venture.
+                <p>For example:</p>
+                <ul>
+                    <li>Performing a test typically incurs a cost, which would be factored into the utility values for scenarios where 'T' is 'do'.</li>
+                    <li>Successfully buying a high-quality field ('B' is 'buy', 'Q' is 'high') should result in a high utility.</li>
+                    <li>Buying a low-quality field might lead to a lower utility or even a net loss.</li>
+                    <li>Choosing not to buy the field might result in a baseline utility, potentially representing saved investment or a small return from an alternative venture.</li>
+                </ul>
 
-                The values in this table are crucial for the influence diagram to calculate the optimal decision strategy that aims to maximize the company's expected utility.
+                <p>The values in this table are crucial for the influence diagram to calculate the optimal decision strategy that aims to maximize the company's expected utility.</p>
                 """)
             u_table_input = gr.Dataframe(
                 value=u_table,
