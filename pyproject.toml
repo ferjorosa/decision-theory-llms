@@ -6,10 +6,14 @@ readme = "README.md"
 requires-python = ">=3.12.3"
 
 dependencies = [
+    "cairosvg>=2.8.2",
+    "gradio>=5.30.0",
+    "graphviz>=0.20.3",
     "jupyter>=1.1.1",
     "numexpr>=2.10.2",
     "openai>=1.78.1",
     "pyagrum>=2.1.0",
+    "pycairo>=1.28.0",
     "restrictedpython>=8.0",
 ]
 
