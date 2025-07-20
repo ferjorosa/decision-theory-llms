@@ -12,6 +12,7 @@ dependencies = [
     "jupyter>=1.1.1",
     "numexpr>=2.10.2",
     "openai>=1.78.1",
+    "plotly>=6.2.0",
     "pyagrum>=2.1.0",
     "pycairo>=1.28.0",
     "restrictedpython>=8.0",
