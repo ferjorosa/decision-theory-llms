@@ -27,7 +27,7 @@ q_cpt = pd.DataFrame({
 u_table = pd.DataFrame(
     [
         ['do', 'buy', 'high', 1220],
-        ['do', 'buy', 'medium', 630],
+        ['do', 'buy', 'medium', 600],
         ['do', 'buy', 'low', -30],
         ['do', 'not_buy', '-', 320],
         ['not_do', 'buy', 'high', 1250],
