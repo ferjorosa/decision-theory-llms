@@ -32,6 +32,10 @@ To update this Space from the main repository:
 
 2. **Deploy updates**:
    ```bash
+   # First, commit any changes to the gradio app
+   git add decision_problems/oil_field_purchase/gradio_app/
+   git commit -m "Update gradio app"
+   
    # Load environment variables
    source .env
    
