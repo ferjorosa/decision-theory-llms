@@ -26,14 +26,14 @@ q_cpt = pd.DataFrame({
 
 u_table = pd.DataFrame(
     [
-        ['do', 'buy', 'high', 1250],
-        ['do', 'buy', 'medium', 630],
-        ['do', 'buy', 'low', 0],
-        ['do', 'not_buy', '-', 350],
-        ['not_do', 'buy', 'high', 1280],
-        ['not_do', 'buy', 'medium', 660],
-        ['not_do', 'buy', 'low', 30],
-        ['not_do', 'not_buy', '-', 380],
+        ['do', 'buy', 'high', 1220],
+        ['do', 'buy', 'medium', 600],
+        ['do', 'buy', 'low', -30],
+        ['do', 'not_buy', '-', 320],
+        ['not_do', 'buy', 'high', 1250],
+        ['not_do', 'buy', 'medium', 630],
+        ['not_do', 'buy', 'low', 0],
+        ['not_do', 'not_buy', '-', 350],
     ],
     columns=['T', 'B', 'Q', 'U']
 )
